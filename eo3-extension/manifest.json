@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "description": "Base Level Extension",
+  "name": "EO3",
+  "description": "formats ao3 html downloads for printing",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
