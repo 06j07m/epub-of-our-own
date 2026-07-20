@@ -7,5 +7,11 @@
     "default_popup": "popup/popup.html",
     "default_icon": "images/icon.png"
   },
-  "permissions": ["activeTab", "scripting"]
+   "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://download.archiveofourown.org/*"
+  ]
 }
