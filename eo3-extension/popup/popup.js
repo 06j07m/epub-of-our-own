@@ -1,6 +1,9 @@
 function getDownloadUrl() {
+    // Get download link element from the page
     // #main > div.work > ul > li.download > ul > li:nth-child(5) > a
     const link = document.querySelector("#main > div.work > ul > li.download > ul > li:nth-child(5) > a");
+
+    // Return actual link or empty string if not found
     if (!link) {
         return "";
     }
@@ -8,12 +11,14 @@ function getDownloadUrl() {
 }
 
 async function getDownload(tabId) {
+    // Inject script to get download URL
     const response = await chrome.scripting.executeScript({
         target: { tabId: tabId },
         func: getDownloadUrl
     });
     const url = response[0].result;
 
+    // If not found
     if (url === "") {
         return {
             success: false,
@@ -21,11 +26,23 @@ async function getDownload(tabId) {
         }
     }
 
-    const response2 = await chrome.runtime.sendMessage({
-        type: "STYLE_HTML",
-        url: url
-    });
-    return response2;
+    // Create new document
+    const response2 = await createDocument(url);
+    if (!response2) {
+        return {
+            success: false,
+            message: "Something went wrong. :("
+        }
+    }
+    return {
+        success: true,
+        message: "Document created successfully. Wait for download."
+    }
+    // const response2 = await chrome.runtime.sendMessage({
+    //     type: "STYLE_HTML",
+    //     url: url
+    // });
+    // return response2;
 }
 
 async function onButtonClick() {
