@@ -1,6 +1,6 @@
 {
   "name": "EO3",
-  "description": "formats ao3 html downloads for printing",
+  "description": "Tool to help format AO3 downloads for print",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {

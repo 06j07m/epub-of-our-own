@@ -2,7 +2,7 @@
 
 # EPUB of Our Own (EO3)
 
-[About](#about) ⋆⋅☆⋅⋆ [Install](#install) ⋆⋅☆⋅⋆ [Usage Guide](#usage-guide)<!-- ⋆⋅☆⋅⋆ [Contribute](#contribute)--> [License](#license)
+[About](#about) ⋆⋅☆⋅⋆ [Install](#install) ⋆⋅☆⋅⋆ [Usage Guide](#usage-guide)<!-- ⋆⋅☆⋅⋆ [Contribute](#contribute)--> ⋆⋅☆⋅⋆ [License](#license)
 
 ## About
 
