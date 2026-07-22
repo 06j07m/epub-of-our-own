@@ -17,10 +17,11 @@ I suppose it should actually be called HTML of Our Own...?
 - Page break after the tags, summary, and each chapter
 - Adjusted font and colours to resemble print books
 - Footer with page numbers
+- Customize the main and title fonts[^1]
+- Customize the background and text colours
 
 ### Planned features:
 
-- Customize the fonts and colours
 - Better formatting of title and tags
 - Add a cover image?
 
@@ -30,9 +31,11 @@ Not available on Webstore yet. Please download the folder `eo3-extension`, then 
 
 ## Usage
 
-1. Navigate to an AO3 work.
-2. Click the extension icon, then click the button in the popup.
-3. Download should begin shortly.
+- Navigate to an AO3 work.
+- Click the extension icon.
+- Select a custom body font (for most of the text) and a title font (for the title and chapter titles).
+- Select a foreground (text) colour and background (page) colour. The page colour won't show up until you print the document.
+- Click the button. Download should begin shortly!
 
 <!-- ## Contribute
 
