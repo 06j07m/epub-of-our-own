@@ -49,9 +49,12 @@ async function onButtonClick() {
     const urlPrefix = "https://archiveofourown.org/works/";
 
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+
+    // Get user selected options
     const options = {
         foregroundColor: document.getElementById("foreground").value,
-        backgroundColor: document.getElementById("background").value
+        backgroundColor: document.getElementById("background").value,
+        mainFont: document.getElementById("mainFont").value
     };
 
     if (tabs[0].url.startsWith(urlPrefix)) {
@@ -62,5 +65,20 @@ async function onButtonClick() {
         document.getElementById("output").textContent = "The extension cannot be used on this page.";
     }
 }
+
+// Populate font dropdown
+const mainDropdown = document.getElementById("mainFont");
+const defaultFonts = getDefaultFonts();
+defaultFonts.forEach((name) => {
+    const choice = new Option(name, name);
+    choice.style.fontFamily = name;
+    mainDropdown.add(choice);
+  });
+const googleFonts = getGoogleFonts();
+Object.keys(googleFonts).forEach((name) => {
+    const choice = new Option(name, name);
+    choice.style.fontFamily = name;
+    mainDropdown.add(choice);
+  });
 
 document.getElementById("btn").addEventListener("click", onButtonClick);

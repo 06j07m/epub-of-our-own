@@ -1,6 +1,6 @@
 body {
     width: 220px;
-    padding: 15px;
+    padding: 2em;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif, 'GNU Unifont';
 }
 
@@ -29,4 +29,9 @@ body {
 
 .colourSelect {
     margin-bottom: 1em;
+}
+
+.fontSelect {
+    margin-bottom: 1em;
+    width: fit-content;
 }
