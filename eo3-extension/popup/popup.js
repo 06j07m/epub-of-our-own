@@ -10,7 +10,7 @@ function getDownloadUrl() {
     return link.href;
 }
 
-async function getDownload(tabId) {
+async function getDownload(tabId, options) {
     // Inject script to get download URL
     const response = await chrome.scripting.executeScript({
         target: { tabId: tabId },
@@ -27,7 +27,7 @@ async function getDownload(tabId) {
     }
 
     // Create new document
-    const response2 = await createDocument(url);
+    const response2 = await createDocument(url, options);
     if (!response2) {
         return {
             success: false,
@@ -49,9 +49,13 @@ async function onButtonClick() {
     const urlPrefix = "https://archiveofourown.org/works/";
 
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    const options = {
+        foregroundColor: document.getElementById("foreground").value,
+        backgroundColor: document.getElementById("background").value
+    };
 
     if (tabs[0].url.startsWith(urlPrefix)) {
-        const response = await getDownload(tabs[0].id);
+        const response = await getDownload(tabs[0].id, options);
         document.getElementById("output").textContent = response.message;
     }
     else {

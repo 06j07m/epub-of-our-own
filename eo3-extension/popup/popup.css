@@ -4,7 +4,7 @@ body {
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif, 'GNU Unifont';
 }
 
-button {
+#btn {
     width: 100%;
     padding: 0.25em 0.75em;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif, 'GNU Unifont';
@@ -17,12 +17,16 @@ button {
     border-radius: 0.25em;
 }
 
-button:hover {
+#btn:hover {
     color: #900;
     border-color: #999;
     box-shadow: inset 2px 2px 2px #bbb;
 }
 
-button:focus, button:active {
+#btn:focus, button:active {
     outline: 1px dotted;
+}
+
+.colourSelect {
+    margin-bottom: 1em;
 }

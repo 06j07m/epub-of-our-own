@@ -9,20 +9,20 @@ function getFileName(url) {
     return "fic";
 }
 
-async function createDocument(downloadUrl) {
+async function createDocument(downloadUrl, options) {
     const newStyle = `
     @media print {
         @page {
             margin: 0.75in;
             /* works in calibre?? */
-            background-color: #f8f7f4;
+            background-color: ${options.backgroundColor};
             @bottom-center {
                 font-size: 0.75em;
                 content: counter(page);
             }
         }
         body {
-            color: #1a1919;
+            color: ${options.foregroundColor};
         }
         a {
             text-decoration: none;
