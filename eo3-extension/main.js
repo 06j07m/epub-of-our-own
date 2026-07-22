@@ -68,7 +68,8 @@ function getFontLink(fontName) {
 
 async function createDocument(downloadUrl, options) {
     try {
-        const [font, fontLink] = getFontLink(options.mainFont);
+        const [mainFontName, mainFontLink] = getFontLink(options.mainFont);
+        const [titleFontName, titleFontLink] = getFontLink(options.titleFont);
 
         const newStyle = `
         @media print {
@@ -93,7 +94,7 @@ async function createDocument(downloadUrl, options) {
         }
 
         body {
-            font-family: ${font}, "Times New Roman", serif;
+            font-family: ${mainFontName}, "Times New Roman", serif;
         }
 
         p.message {
@@ -121,6 +122,7 @@ async function createDocument(downloadUrl, options) {
             margin-top: 3em;
             margin-bottom: 0.25em;
             page-break-before: always;
+            font-family: ${titleFontName}, "Times New Roman", serif;
         }
 
         .meta .byline {
@@ -134,6 +136,7 @@ async function createDocument(downloadUrl, options) {
             margin-top: 2em;
             margin-bottom: 0.25em;
             page-break-before: always;
+            font-family: ${titleFontName}, "Times New Roman", serif;
         }
 
         .meta > p, #endnotes > p {
@@ -141,6 +144,7 @@ async function createDocument(downloadUrl, options) {
             text-align: center;
             margin-top: 3em;
             margin-bottom: 0;
+            font-family: ${titleFontName}, "Times New Roman", serif;
         }
 
         .meta > blockquote, #endnotes > blockquote {
@@ -191,7 +195,7 @@ async function createDocument(downloadUrl, options) {
         styleElement.textContent = newStyle;
 
         // Create new elements for the Google Fonts links if needed
-        if (fontLink != "") {
+        if (mainFontLink != "" || titleFontLink != "") {
             const fontLink1 = doc.createElement("link");
             fontLink1.rel = "preconnect";
             fontLink1.href = "https://fonts.googleapis.com";
@@ -201,14 +205,23 @@ async function createDocument(downloadUrl, options) {
             fontLink2.href = "https://fonts.gstatic.com";
             fontLink2.crossOrigin = "anonymous";
 
-            const fontLink3 = doc.createElement("link");
-            fontLink3.rel = "stylesheet";
-            fontLink3.href = fontLink;
-
             // Insert the new font links before the existing style element
             styleElement.insertAdjacentElement("beforebegin", fontLink1);
             styleElement.insertAdjacentElement("beforebegin", fontLink2);
+        }
+        
+        if (mainFontLink != "") {
+            const fontLink3 = doc.createElement("link");
+            fontLink3.rel = "stylesheet";
+            fontLink3.href = mainFontLink;
             styleElement.insertAdjacentElement("beforebegin", fontLink3);
+        }
+
+        if (titleFontLink != "") {
+            const fontLink4 = doc.createElement("link");
+            fontLink4.rel = "stylesheet";
+            fontLink4.href = titleFontLink;
+            styleElement.insertAdjacentElement("beforebegin", fontLink4);
         }
 
         // Create new HTML file from modified document and make it into a blob

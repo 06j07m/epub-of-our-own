@@ -54,7 +54,8 @@ async function onButtonClick() {
     const options = {
         foregroundColor: document.getElementById("foreground").value,
         backgroundColor: document.getElementById("background").value,
-        mainFont: document.getElementById("mainFont").value
+        mainFont: document.getElementById("mainFont").value,
+        titleFont: document.getElementById("titleFont").value
     };
 
     if (tabs[0].url.startsWith(urlPrefix)) {
@@ -66,19 +67,24 @@ async function onButtonClick() {
     }
 }
 
+function populateFontDropdown(dropdownId, fontList) {
+    const dropdown = document.getElementById(dropdownId);
+    fontList.forEach((name) => {
+        let choice = new Option(name, name);
+        choice.style.fontFamily = name;
+        if (name === "Times New Roman") {
+            choice.defaultSelected = true;
+        }
+        dropdown.add(choice);
+    })
+}
+
 // Populate font dropdown
-const mainDropdown = document.getElementById("mainFont");
 const defaultFonts = getDefaultFonts();
-defaultFonts.forEach((name) => {
-    const choice = new Option(name, name);
-    choice.style.fontFamily = name;
-    mainDropdown.add(choice);
-  });
-const googleFonts = getGoogleFonts();
-Object.keys(googleFonts).forEach((name) => {
-    const choice = new Option(name, name);
-    choice.style.fontFamily = name;
-    mainDropdown.add(choice);
-  });
+const googleFonts = Object.keys(getGoogleFonts());
+const fonts = defaultFonts.concat(googleFonts);
+populateFontDropdown("mainFont", fonts);
+populateFontDropdown("titleFont", fonts);
+
 
 document.getElementById("btn").addEventListener("click", onButtonClick);
